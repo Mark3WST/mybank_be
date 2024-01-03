@@ -20,7 +20,5 @@ public class UserController {
         return ResponseEntity.ok(newUser);
     }
 
-    // Login and logout are handled by Spring Security.
-    // No explicit endpoints needed unless you are handling sessions manually.
 }
 

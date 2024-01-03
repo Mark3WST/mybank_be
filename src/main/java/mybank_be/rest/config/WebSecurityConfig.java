@@ -23,12 +23,13 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/auth/register").permitAll()
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/auth/register", "/auth/login").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // Only allow users with ROLE_ADMIN
                         .anyRequest().authenticated())
-                .formLogin((form) -> form
-                        .permitAll())
-                .logout((logout) -> logout
+                .formLogin(form -> form
+                        .disable()) // Disable default form login
+                .logout(logout -> logout
                         .permitAll());
         return http.build();
     }
