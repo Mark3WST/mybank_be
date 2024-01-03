@@ -1,4 +1,4 @@
-package java.mybank_be;
+package mybank_be.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
