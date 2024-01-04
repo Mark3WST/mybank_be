@@ -1,16 +1,15 @@
 package mybank_be.rest.service;
 
-import org.springframework.transaction.annotation.Transactional;
-
-import mybank_be.rest.entity.Role;
-import mybank_be.rest.entity.User;
-import mybank_be.rest.dao.UserDao;
-
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import mybank_be.rest.dao.UserDao;
+import mybank_be.rest.entity.Role;
+import mybank_be.rest.entity.User;
 
 @Transactional
 @Service
@@ -33,5 +32,10 @@ public class UserServiceImpl implements UserService {
         return userDao.findByUsername(username);
     }
 
-    
+    @Override
+    public User login(String username, String password) {
+        User user = userDao.findByUsernameAndPassword(username, password);
+        return user;
+    }
+
 }
