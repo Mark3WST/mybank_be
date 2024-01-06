@@ -1,9 +1,14 @@
 package mybank_be.rest.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,20 +31,22 @@ public class UserController {
         return ResponseEntity.ok(newUser);
     }
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute("user") User user) {
+     @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User user) {
+        try {
+            User oauthUser = userService.login(user.getUsername(), user.getPassword());
 
-        User oauthUser = userService.login(user.getUsername(), user.getPassword());
+            // Generate a simple token (UUID) - for demonstration purposes only
+            String token = UUID.randomUUID().toString();
+            
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "User successfully authenticated");
+            response.put("token", token); // Include the token in the response
 
-        System.out.print(oauthUser);
-        if (Objects.nonNull(oauthUser)) {
+            return ResponseEntity.ok(response);
 
-            return "redirect:/";
-
-        } else {
-            return "redirect:/login";
-
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
     }
-
 }

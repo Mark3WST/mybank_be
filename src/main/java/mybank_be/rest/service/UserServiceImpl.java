@@ -3,6 +3,7 @@ package mybank_be.rest.service;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,9 +33,12 @@ public class UserServiceImpl implements UserService {
         return userDao.findByUsername(username);
     }
 
-    @Override
+   @Override
     public User login(String username, String password) {
-        User user = userDao.findByUsernameAndPassword(username, password);
+        User user = userDao.findByUsername(username);
+        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
+            throw new UsernameNotFoundException("Invalid username or password");
+        }
         return user;
     }
 

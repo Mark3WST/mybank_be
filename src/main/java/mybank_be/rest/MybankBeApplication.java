@@ -20,7 +20,7 @@ public class MybankBeApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
 						.allowedMethods("POST", "GET", "OPTIONS", "DELETE", "PUT")
-						.allowedOrigins("http://localhost:3000")
+						.allowedOrigins("http://localhost:5173")
 						.exposedHeaders("x-total-count");
 
 			}
