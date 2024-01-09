@@ -1,13 +1,11 @@
 package mybank_be.rest.entity;
 
-import java.math.BigDecimal;
-import java.util.Locale.Category;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +20,8 @@ public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private BigDecimal amount;
-    @ManyToOne
-    private Category category;
-    // ... other fields (date, user association, etc.)
+    private String description;
+    private double amount;
+    private LocalDate date;
+
 }

@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import mybank_be.rest.entity.User;
-import mybank_be.rest.userRepository.UserRepository;
+import mybank_be.rest.repository.UserRepository;
 
 @Repository
 @Profile("db")
