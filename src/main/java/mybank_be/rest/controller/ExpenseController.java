@@ -33,7 +33,7 @@ public class ExpenseController {
         return ResponseEntity.ok(expense);
     }
 
-    @PostMapping("{createExpense}")
+    @PostMapping
     public ResponseEntity<?> createExpense(@RequestBody Expense expense) {
         Expense newExpense = expenseService.addExpense(expense);
         return ResponseEntity.ok(newExpense);
