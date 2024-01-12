@@ -1,3 +1,4 @@
+// FinancialRecord.java
 package mybank_be.rest.entity;
 
 import java.time.LocalDate;
@@ -16,12 +17,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Expense {
+public class FinancialRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
     private double amount;
     private LocalDate date;
-
+    private String type; // 'income' or 'expense'
 }

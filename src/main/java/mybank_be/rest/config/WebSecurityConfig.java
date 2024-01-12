@@ -24,7 +24,7 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/auth/register", "/auth/login").permitAll()
-                        .requestMatchers("/expense/**").permitAll()
+                        .requestMatchers("/financialRecords/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Only allow users with ROLE_ADMIN
                         .anyRequest().authenticated())
                 .formLogin(form -> form
