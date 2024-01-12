@@ -2,6 +2,7 @@
 package mybank_be.rest.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,4 +26,5 @@ public class FinancialRecord {
     private double amount;
     private LocalDate date;
     private String type; // 'income' or 'expense'
+    private LocalDateTime dateTime;
 }
