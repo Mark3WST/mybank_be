@@ -27,4 +27,5 @@ public class FinancialRecord {
     private LocalDate date;
     private String type; // 'income' or 'expense'
     private LocalDateTime dateTime;
+    private String category;
 }
