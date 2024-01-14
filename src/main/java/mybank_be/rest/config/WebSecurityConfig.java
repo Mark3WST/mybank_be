@@ -25,6 +25,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/auth/register", "/auth/login").permitAll()
                         .requestMatchers("/financialRecords/**").permitAll()
+                        .requestMatchers("/wallets/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Only allow users with ROLE_ADMIN
                         .anyRequest().authenticated())
                 .formLogin(form -> form
