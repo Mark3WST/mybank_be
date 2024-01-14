@@ -28,4 +28,17 @@ public class WalletController {
         return ResponseEntity.ok(wallets);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteWallet(@PathVariable(value = "id") Long walletId) {
+        walletService.deleteWallet(walletId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Wallet> updateWallet(@PathVariable(value = "id") Long walletId,
+            @RequestBody Wallet walletDetails) {
+        Wallet updatedWallet = walletService.updateWallet(walletId, walletDetails);
+        return ResponseEntity.ok(updatedWallet);
+    }
+
 }
