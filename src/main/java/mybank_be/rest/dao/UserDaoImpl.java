@@ -27,4 +27,14 @@ public class UserDaoImpl implements UserDao {
     public User findByUsernameAndPassword(String username, String password) {
         return userRepository.findByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public User findByResetToken(String resetToken) {
+        return userRepository.findByResetToken(resetToken);
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }

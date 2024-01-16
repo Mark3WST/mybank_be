@@ -1,5 +1,6 @@
 package mybank_be.rest.entity;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -36,4 +37,9 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+    @Column
+    private String resetToken;
+    private String email;
+    @Column
+    private LocalDateTime resetTokenExpiry;
 }

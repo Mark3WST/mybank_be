@@ -23,7 +23,9 @@ public class WebSecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/auth/register", "/auth/login").permitAll()
+                        .requestMatchers("/auth/register", "/auth/login", "/auth/**", "/auth/forgot-password",
+                                "/auth/reset-password")
+                        .permitAll()
                         .requestMatchers("/financialRecords/**").permitAll()
                         .requestMatchers("/wallets/**").permitAll()
                         .requestMatchers("/goals/**").permitAll()

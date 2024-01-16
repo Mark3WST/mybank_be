@@ -8,4 +8,9 @@ public interface UserService {
     User findByUsername(String username);
 
     User login(String username, String password);
+
+    void createPasswordResetTokenForUser(String username);
+
+    void resetPassword(String token, String newPassword);
+
 }
