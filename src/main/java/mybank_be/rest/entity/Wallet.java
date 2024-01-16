@@ -22,5 +22,6 @@ public class Wallet {
     private Long id;
 
     private String name;
+    private String bank_name;
     private BigDecimal balance;
 }
