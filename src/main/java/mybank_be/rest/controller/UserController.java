@@ -11,15 +11,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import mybank_be.rest.entity.User;
+import mybank_be.rest.service.PasswordResetService;
 import mybank_be.rest.service.UserService;
 
 @RestController
 @RequestMapping("/auth")
 public class UserController {
-
+    @Autowired
+    private PasswordResetService passwordResetService;
     @Autowired
     private UserService userService;
 
@@ -46,5 +49,23 @@ public class UserController {
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestParam String username) {
+        User user = userService.findByUsername(username);
+        if (user != null) {
+            passwordResetService.createPasswordResetTokenForUser(user);
+        }
+        return ResponseEntity.ok("Reset link sent if the user exists");
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestParam String token, @RequestParam String newPassword) {
+        if (passwordResetService.validatePasswordResetToken(token)) {
+            // Logic to reset password
+            return ResponseEntity.ok("Password has been reset");
+        }
+        return ResponseEntity.badRequest().body("Invalid or expired token");
     }
 }
