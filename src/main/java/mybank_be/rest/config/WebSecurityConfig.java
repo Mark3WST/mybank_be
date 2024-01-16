@@ -26,6 +26,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/auth/register", "/auth/login").permitAll()
                         .requestMatchers("/financialRecords/**").permitAll()
                         .requestMatchers("/wallets/**").permitAll()
+                        .requestMatchers("/goals/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Only allow users with ROLE_ADMIN
                         .anyRequest().authenticated())
                 .formLogin(form -> form

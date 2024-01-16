@@ -5,10 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import mybank_be.rest.entity.FinancialRecord;
+import mybank_be.rest.dao.WalletDao;
 import mybank_be.rest.entity.Wallet;
 import mybank_be.rest.exception.ResourceNotFoundException;
-import mybank_be.rest.dao.WalletDao;
 
 @Service
 public class WalletServiceImpl implements WalletService {
