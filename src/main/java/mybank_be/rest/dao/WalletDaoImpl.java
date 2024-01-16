@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import mybank_be.rest.entity.FinancialRecord;
 import mybank_be.rest.entity.Wallet;
 import mybank_be.rest.repository.WalletRepository;
 
