@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import mybank_be.rest.entity.FinancialRecord;
@@ -35,15 +36,16 @@ public class FinancialRecordController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody FinancialRecord financialRecord) {
-        FinancialRecord newRecord = service.save(financialRecord);
+    public ResponseEntity<?> create(@RequestParam Long walletId, @RequestBody FinancialRecord financialRecord) {
+        FinancialRecord newRecord = service.save(walletId, financialRecord);
         return ResponseEntity.ok(newRecord);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody FinancialRecord financialRecord) {
-        financialRecord.setId(id);
-        FinancialRecord updatedRecord = service.save(financialRecord);
+    public ResponseEntity<?> update(@PathVariable Long id,
+            @RequestParam(required = false) Long walletId,
+            @RequestBody FinancialRecord financialRecord) {
+        FinancialRecord updatedRecord = service.update(id, walletId, financialRecord);
         return ResponseEntity.ok(updatedRecord);
     }
 

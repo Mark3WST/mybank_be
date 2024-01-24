@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,4 +29,6 @@ public class FinancialRecord {
     private String type; // 'income' or 'expense'
     private LocalDateTime dateTime;
     private String category;
+    @ManyToOne
+    private Wallet wallet;
 }

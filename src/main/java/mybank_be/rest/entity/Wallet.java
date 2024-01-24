@@ -1,11 +1,14 @@
 package mybank_be.rest.entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,4 +27,8 @@ public class Wallet {
     private String name;
     private String bank_name;
     private BigDecimal balance;
+
+    @OneToMany(mappedBy = "wallet")
+    @Builder.Default
+    private List<FinancialRecord> financialRecord = new ArrayList<>();
 }
